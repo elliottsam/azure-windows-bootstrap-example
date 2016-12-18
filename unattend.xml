@@ -1,0 +1,12 @@
+<FirstLogonCommands>
+    <SynchronousCommand>
+        <CommandLine>cmd /C copy C:\AzureData\CustomData.bin C:\AzureData\CustomData.ps1</CommandLine>
+        <Description>Rename bootstrap script</Description>
+        <Order>1</Order>
+    </SynchronousCommand>
+    <SynchronousCommand>
+        <CommandLine>%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy bypass -File C:\AzureData\CustomData.ps1</CommandLine>
+        <Description>Run bootstrap script</Description>
+        <Order>2</Order>
+    </SynchronousCommand>
+</FirstLogonCommands>

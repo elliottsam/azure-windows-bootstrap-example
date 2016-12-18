@@ -1,0 +1,18 @@
+Install-windowsfeature AD-Domain-Services
+Import-Module ADDSDeployment
+
+$$SecureString =  ConvertTo-SecureString "${safe-mode-password}" -AsPlainText -Force
+
+Install-ADDSForest `
+    -CreateDnsDelegation:$$false `
+    -DatabasePath "C:\Windows\NTDS" `
+    -DomainMode "Win2012R2" `
+    -DomainName "${domain}" `
+    -DomainNetbiosName "${netbios-name}" `
+    -ForestMode "Win2012R2" `
+    -InstallDns:$$true `
+    -LogPath "C:\Windows\NTDS" `
+    -NoRebootOnCompletion:$$false `
+    -SysvolPath "C:\Windows\SYSVOL" `
+    -Force:$$true `
+    -SafeModeAdministratorPassword $$SecureString
